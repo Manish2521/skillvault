@@ -5,6 +5,10 @@ import LoadingBar from "react-top-loading-bar"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import "../index.css"
+// import dotenv from "dotenv";
+
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 
 export default function Login({ setToken }) {
   const [formData, setFormData] = useState({
@@ -39,7 +43,7 @@ export default function Login({ setToken }) {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${backendUrl}/api/auth/login`,
         formData,
         { validateStatus: (s) => s < 500 }
       )

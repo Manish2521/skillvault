@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../index.css";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -70,7 +71,7 @@ export default function Signup() {
 
       /* 2️⃣  Signup */
       const res = await axios.post(
-        "http://localhost:5000/api/auth/signup",
+        `${backendUrl}/api/auth/signup`,
         formData,
         { validateStatus: (s) => s < 500 }
       );
