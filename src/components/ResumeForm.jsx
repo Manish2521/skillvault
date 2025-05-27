@@ -35,9 +35,9 @@ export default function ResumeForm() {
     }
   };
 
-  useEffect(() => {
-    fetchResumes();
-  }, []);
+  // useEffect(() => {
+  //   fetchResumes();
+  // }, []);
 
   const handleUpload = async (e) => {
     e.preventDefault();
