@@ -19,6 +19,11 @@ app.use("/api/resumes", resumeRoutes);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
+// Default route
+app.get("/", (req, res) => {
+  res.json("Ping..");
+});
+
 mongoose.connection.on("connected", () => {
   console.log("✅ MongoDB connected");
 });
