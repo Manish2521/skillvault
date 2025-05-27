@@ -1,8 +1,9 @@
 import axios from 'axios'
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 // Create an Axios instance
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Change to your backend URL if deployed
+  baseURL: `${backendUrl}/api`, 
 })
 
 // Set JWT token for authenticated requests

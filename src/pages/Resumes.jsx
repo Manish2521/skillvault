@@ -4,6 +4,8 @@ import LoadingBar from "react-top-loading-bar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function Resumes() {
   const [resumes, setResumes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +18,7 @@ export default function Resumes() {
       bar.current.continuousStart();
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:5000/api/resumes", {
+      const res = await fetch(`${backendUrl}/api/resumes`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -53,7 +55,7 @@ export default function Resumes() {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:5000/api/resumes/${selectedResumeId}`, {
+      const res = await fetch(`${backendUrl}/api/resumes/${selectedResumeId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

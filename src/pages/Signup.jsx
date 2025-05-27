@@ -61,7 +61,7 @@ export default function Signup() {
     try {
       /* 1️⃣  Check duplicate (min 2-sec UI) */
       const t0   = Date.now();
-      const check = await axios.get("http://localhost:5000/api/auth/checkUser", {
+      const check = await axios.get(`${backendUrl}/api/auth/checkUser`, {
         params: { email: formData.email },
         validateStatus: (s) => s < 500,
       });

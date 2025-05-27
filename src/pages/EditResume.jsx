@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export default function EditResume() {
   const { id } = useParams()
@@ -18,7 +19,7 @@ export default function EditResume() {
     const fetchResume = async () => {
       try {
         const token = localStorage.getItem('token')
-        const res = await fetch(`http://localhost:5000/api/resumes/${id}`, {
+        const res = await fetch(`${backendUrl}/api/resumes/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -53,7 +54,7 @@ export default function EditResume() {
     try {
       const token = localStorage.getItem('token')
 
-      const res = await fetch(`http://localhost:5000/api/resumes/${id}`, {
+      const res = await fetch(`${backendUrl}/api/resumes/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

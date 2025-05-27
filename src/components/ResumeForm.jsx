@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import ResumeList from "../components/ResumeList";
 import { useNavigate } from "react-router-dom";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export default function ResumeForm() {
   const [file, setFile] = useState(null);
   const [resumeName, setResumeName] = useState("");
@@ -18,7 +20,7 @@ export default function ResumeForm() {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/api/resumes", {
+      const res = await fetch(`${backendUrl}/api/auth/resumes`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -51,7 +53,7 @@ export default function ResumeForm() {
       bar.current.continuousStart();
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:5000/api/resumes/upload", {
+      const res = await fetch(`${backendUrl}/api/resumes/upload`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
@@ -79,7 +81,7 @@ export default function ResumeForm() {
     if (!window.confirm("Are you sure you want to delete this resume?")) return;
 
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://localhost:5000/api/resumes/${id}`, {
+    const res = await fetch(`${backendUrl}/api/resumes/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

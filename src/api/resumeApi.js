@@ -1,4 +1,6 @@
-const API_BASE = "http://localhost:5000/resumes";
+
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const API_BASE = `${backendUrl}/api/auth/resumes`;
 
 export const getResumes = async () => {
   const res = await fetch(API_BASE);
