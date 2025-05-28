@@ -106,7 +106,7 @@ export default function ResumeForm() {
         <form onSubmit={handleUpload} className="space-y-4">
           <input
             type="text"
-            placeholder="Resume title (e.g. Frontend Dev)"
+            placeholder="Title (e.g. Frontend Dev)"
             value={resumeName}
             onChange={(e) => setResumeName(e.target.value)}
             required
