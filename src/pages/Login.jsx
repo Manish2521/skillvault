@@ -85,7 +85,7 @@ export default function Login({ setToken }) {
   }
 
   return (
-    <div className="relative flex justify-center items-start min-h-screen bg-gradient-to-tr from-blue-100 via-purple-100 to-pink-100 p-4 sm:p-6 md:p-8 lg:p-12 pt-12 sm:pt-16">
+    <div className="relative flex justify-center items-start bg-gradient-to-tr from-blue-100 via-purple-100 to-pink-100 px-4 sm:px-6 md:px-8 lg:px-12 pt-12 sm:pt-16 pb-0 min-h-[calc(100vh-80px)]">
       <LoadingBar color="#3b82f6" ref={loadingBar} shadow />
 
       <form
