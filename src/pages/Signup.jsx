@@ -167,7 +167,7 @@ export default function Signup() {
             placeholder="••••••••"
             value={formData.password}
             onChange={handleChange}
-            className="flex-grow px-4 py-3 h-12 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition pr-10 leading-6"
+            className="w-full px-4 py-3 h-12 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition pr-12 leading-6"
             required
             />
             <button
