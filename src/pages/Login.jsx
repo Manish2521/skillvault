@@ -85,12 +85,12 @@ export default function Login({ setToken }) {
   }
 
   return (
-    <div className="relative flex justify-center items-center min-h-screen bg-gradient-to-tr from-blue-100 via-purple-100 to-pink-100 p-4 sm:p-6 md:p-8 lg:p-12">
+    <div className="relative flex justify-center items-start min-h-screen bg-gradient-to-tr from-blue-100 via-purple-100 to-pink-100 p-4 sm:p-6 md:p-8 lg:p-12 pt-12 sm:pt-16">
       <LoadingBar color="#3b82f6" ref={loadingBar} shadow />
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-xl w-full max-w-md sm:max-w-lg md:max-w-xl space-y-6"
+        className="bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-xl w-full max-w-sm sm:max-w-md md:max-w-md space-y-6"
       >
         <h2 className="text-2xl sm:text-3xl font-extrabold text-center text-gray-800">
           Welcome Back
