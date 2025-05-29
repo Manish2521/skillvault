@@ -118,13 +118,20 @@ export default function ResumeForm() {
             accept=".pdf"
             onChange={(e) => {
               const selectedFile = e.target.files[0];
-              if (selectedFile && selectedFile.type !== "application/pdf") {
-                toast.error("Please select a PDF file.");
-                e.target.value = null;
-                setFile(null);
-              } else {
-                setFile(selectedFile);
+              if (selectedFile) {
+                if (selectedFile.type !== "application/pdf") {
+                  toast.error("Please select a PDF file.");
+                  e.target.value = null;
+                  setFile(null);
+                } else if (selectedFile.size > 10 * 1024 * 1024) {
+                  toast.error("PDF must be under 10MB.");
+                  e.target.value = null;
+                  setFile(null);
+                } else {
+                  setFile(selectedFile);
+                }
               }
+
             }}
             required
             className="w-full"
