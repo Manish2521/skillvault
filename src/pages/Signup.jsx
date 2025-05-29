@@ -100,7 +100,7 @@ export default function Signup() {
 
   /* ---------- UI ---------- */
   return (
-    <div className="relative flex justify-center items-center min-h-screen bg-gradient-to-tr from-blue-100 via-purple-100 to-pink-100 p-4 sm:p-6 md:p-8 lg:p-12">
+    <div className="relative flex justify-center items-start min-h-screen bg-gradient-to-tr from-blue-100 via-purple-100 to-pink-100 p-4 sm:p-6 md:p-8 lg:p-12 pt-12 sm:pt-16">
       <LoadingBar color="#3b82f6" ref={loadingBar} shadow />
 
       <form
