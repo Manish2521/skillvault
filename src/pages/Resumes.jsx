@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LoadingBar from "react-top-loading-bar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import downloadIcon from './download.png';
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -99,30 +100,55 @@ export default function Resumes() {
               <thead className="bg-gray-50 text-sm text-gray-700 font-semibold">
                 <tr>
                   <th className="px-4 sm:px-6 py-3 text-left">Name</th>
-                  <th className="px-4 sm:px-6 py-3 text-center">Actions</th>
+                  <th className="px-4 sm:px-6 py-3 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 text-gray-800 text-sm">
                 {resumes.map((resume) => (
                   <tr key={resume._id} className="hover:bg-gray-50">
-                    <td className="px-4 sm:px-6 py-3">
-                      {resume.name || resume.filename}
+                    <td className="px-4 sm:px-6 py-3 max-w-xs sm:max-w-md">
+                      <span
+                        className="block truncate"
+                        title={resume.name || resume.filename}
+                        style={{ maxWidth: '15rem' }}
+                      >
+                        {resume.name || resume.filename}
+                      </span>
                     </td>
-                    <td className="px-4 sm:px-6 py-3 text-center flex justify-center gap-2 flex-wrap">
-                      <a
-                        href={`${resume.url}?fl_attachment=false`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-green-500 hover:bg-green-600 text-white text-xs font-medium px-3 py-1 rounded"
-                      >
-                        View
-                      </a>
-                      <button
-                        onClick={() => confirmDelete(resume._id)}
-                        className="bg-red-500 hover:bg-red-600 text-white text-xs font-medium px-3 py-1 rounded"
-                      >
-                        Delete
-                      </button>
+
+                    <td className="px-4 sm:px-6 py-3 text-right">
+                      <div className="inline-flex flex-wrap justify-end gap-2">
+                        {/* Download Button */}
+                        <a
+                          href={resume.url.replace(
+                            "/upload/",
+                            `/upload/fl_attachment:${resume.filename}/`
+                          )}
+                          className="inline-block"
+                          title="Download"
+                          download={resume.filename}
+                        >
+                          <img src={downloadIcon} alt="Download" className="w-6 h-6" />
+                        </a>
+
+                        {/* View Button */}
+                        <a
+                          href={`${resume.url}?fl_attachment=false`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-green-500 hover:bg-green-600 text-white text-xs font-medium px-3 py-1 rounded"
+                        >
+                          View
+                        </a>
+
+                        {/* Delete Button */}
+                        <button
+                          onClick={() => confirmDelete(resume._id)}
+                          className="bg-red-500 hover:bg-red-600 text-white text-xs font-medium px-2 py-1 rounded"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -131,7 +157,6 @@ export default function Resumes() {
           </div>
         )}
       </div>
-
 
       {showDeleteModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
