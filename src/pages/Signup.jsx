@@ -125,7 +125,7 @@ export default function Signup() {
             placeholder="John Doe"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            className="w-full px-4 py-3 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
             required
         />
         </div>
@@ -142,7 +142,7 @@ export default function Signup() {
             placeholder="you@example.com"
             value={formData.email}
             onChange={handleChange}
-            className={`w-full px-4 py-2 rounded-lg shadow-sm border ${
+            className={`w-full px-4 py-3 rounded-lg shadow-sm border ${
               formData.email && !emailValid ? "border-red-400" : "border-gray-300"
             } focus:outline-none focus:ring-2 focus:ring-blue-500 transition`}
             required
@@ -167,7 +167,7 @@ export default function Signup() {
             placeholder="••••••••"
             value={formData.password}
             onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition pr-12 leading-6"
+            className="w-full px-4 py-3 rounded-lg shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition pr-12 leading-6"
             required
             />
             <button
