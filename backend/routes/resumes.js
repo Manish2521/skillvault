@@ -85,16 +85,22 @@ router.delete("/:id", auth, async (req, res) => {
       user: req.user.id,
     });
 
-   if (resume) {
-     await User.findByIdAndUpdate(req.user.id, {
-       $inc: { totalSizeMB: -resume.sizeMB },
-     });
-   }
+    if (resume) {
+      const resumeSizeMB = resume.sizeMB || 0;
+
+      const user = await User.findById(req.user.id);
+
+      user.totalSizeMB = Math.max(0, (user.totalSizeMB || 0) - resumeSizeMB);
+
+      await user.save();
+    }
 
     res.json({ success: true });
   } catch (err) {
+    console.error("Delete failed:", err);
     res.status(500).json({ success: false, message: "Delete failed" });
   }
 });
+
 
 export default router;
