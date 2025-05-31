@@ -13,6 +13,7 @@ export default function Resumes() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedResumeId, setSelectedResumeId] = useState(null);
   const bar = useRef(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const fetchResumes = async () => {
     try {
@@ -58,6 +59,7 @@ export default function Resumes() {
 
   const handleDelete = async () => {
     if (!selectedResumeId) return;
+    setIsDeleting(true)
 
     try {
       const token = localStorage.getItem("token");
@@ -76,6 +78,7 @@ export default function Resumes() {
     } catch (err) {
       toast.error("Error deleting document");
     } finally {
+      setIsDeleting(false);  
       setShowDeleteModal(false);
       setSelectedResumeId(null);
     }
@@ -211,9 +214,12 @@ export default function Resumes() {
               </button>
               <button
                 onClick={handleDelete}
-                className="px-4 py-2 rounded bg-red-600 hover:bg-red-700 text-white"
+                disabled={isDeleting}
+                className={`px-4 py-2 rounded text-white ${
+                  isDeleting ? "bg-red-400 cursor-not-allowed" : "bg-red-600 hover:bg-red-700"
+                }`}
               >
-                Delete
+                {isDeleting ? "Deleting..." : "Delete"}
               </button>
             </div>
           </div>
