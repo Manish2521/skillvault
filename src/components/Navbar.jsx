@@ -56,7 +56,7 @@ export default function Navbar({ token, setToken }) {
             {token && userName ? (
               <>
               
-              <span className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 font-medium px-2 py-2 rounded-xl shadow-sm">
+              <span className="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-100 font-medium px-1 py-2 rounded-xl shadow-sm">
 {/*                 <User className="w-5 h-5 text-blue-600 dark:text-blue-400" /> */}
                 Hello, <span className="font-semibold text-blue-600 dark:text-blue-400">{userName.split(' ')[0]}</span>
               </span>
