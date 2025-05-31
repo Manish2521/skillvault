@@ -73,7 +73,7 @@ export default function Resumes() {
         toast.success("Document deleted");
         setResumes((prev) => prev.filter((r) => r._id !== selectedResumeId));
       } else if (res.status === 404) {
-      toast.warn("Resume not found. Refreshing...");
+      toast.warn("Document not found. Refreshing...");
       await fetchResumes();   
       } else {
         toast.error(data.message || "Failed to delete");
