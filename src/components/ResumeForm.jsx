@@ -104,14 +104,22 @@ export default function ResumeForm() {
         <h2 className="text-2xl font-semibold mb-6">Upload Your Resume</h2>
 
         <form onSubmit={handleUpload} className="space-y-4">
-          <input
-            type="text"
-            placeholder="Title (e.g. Frontend Dev)"
-            value={resumeName}
-            onChange={(e) => setResumeName(e.target.value)}
-            required
-            className="w-full border px-3 py-2 rounded"
-          />
+        <input
+          type="text"
+          placeholder="Title (e.g. Frontend Dev)"
+          value={resumeName}
+          onChange={(e) => {
+            if (e.target.value.length <= 20) {
+              setResumeName(e.target.value);
+            }
+          }}
+          maxLength={20}
+          required
+          className="w-full border px-3 py-2 rounded"
+        />
+        <p className="text-sm text-gray-500 text-right">
+          {resumeName.length}/20 characters
+        </p>
 
           <input
             type="file"
