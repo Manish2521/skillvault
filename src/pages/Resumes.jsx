@@ -39,7 +39,13 @@ export default function Resumes() {
   };
 
   useEffect(() => {
-    fetchResumes();
+    fetchResumes(); 
+
+    const intervalId = setInterval(() => {
+      fetchResumes(); 
+    }, 10000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const confirmDelete = (id) => {
