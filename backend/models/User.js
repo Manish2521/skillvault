@@ -2,9 +2,10 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
 const schema = new mongoose.Schema({
-  name: String,
-  email: { type: String, unique: true },
-  passwordHash: String
+  name:  { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  passwordHash: { type: String, required: true },
+  totalSizeMB:   { type: Number, default: 0 },
 })
 
 schema.methods.match = async function (pwd) { return bcrypt.compare(pwd, this.passwordHash) }
