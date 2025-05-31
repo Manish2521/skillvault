@@ -4,6 +4,7 @@ import { storage } from "../utils/cloudinary.js";
 import auth from "../middleware/auth.js";
 import Resume from "../models/Resume.js";
 import { Types } from "mongoose";
+import User from '../models/User.js';
 
 const upload = multer({ storage });
 const router = express.Router();
@@ -31,6 +32,18 @@ router.post(
       //   console.log("❌ This is NOT a PDF file.");
       // }
 
+      const sizeMB = +(req.file.size / (1024 * 1024)).toFixed(2);
+  
+  
+      const user = await User.findById(req.user.id);
+      if (!user) return res.status(404).json({ success: false, message: "User not found" });
+  
+      const quotaLimit = 10;         // 10 MB total
+      if (user.totalSizeMB + sizeMB > quotaLimit) {
+        return res.status(413).json({ success: false, message: "Quota exceeded (10 MB)" });
+      }
+
+      
 
       const sizeMB = +(req.file.size / (1024 * 1024)).toFixed(2);
       
@@ -41,6 +54,10 @@ router.post(
         sizeMB,
       });
 
+      // increment the user’s running total
+      user.totalSizeMB += sizeMB;
+      await user.save();
+      
       res.status(201).json({ success: true, resume: newResume });
     } catch (err) {
       console.error("Upload failed:", err);
@@ -63,7 +80,17 @@ router.get("/", auth, async (req, res) => {
 
 router.delete("/:id", auth, async (req, res) => {
   try {
-    await Resume.deleteOne({ _id: new Types.ObjectId(req.params.id), user: req.user.id });
+    const resume = await Resume.findOneAndDelete({
+      _id: new Types.ObjectId(req.params.id),
+      user: req.user.id,
+    });
+
+   if (resume) {
+     await User.findByIdAndUpdate(req.user.id, {
+       $inc: { totalSizeMB: -resume.sizeMB },
+     });
+   }
+
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ success: false, message: "Delete failed" });
