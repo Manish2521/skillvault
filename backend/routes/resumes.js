@@ -45,7 +45,7 @@ router.post(
 
       
 
-      const sizeMB = +(req.file.size / (1024 * 1024)).toFixed(2);
+      // const sizeMB = +(req.file.size / (1024 * 1024)).toFixed(2);
       
       const newResume = await Resume.create({
         user: req.user.id,
