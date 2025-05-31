@@ -98,9 +98,9 @@ router.delete("/:id", auth, async (req, res) => {
         await user.save();
       }
 
-      return res.json({ success: true, message: "Resume deleted" });
+      return res.json({ success: true, message: "Document deleted" });
     } else {
-      return res.status(404).json({ success: false, message: "Resume not found" });
+      return res.status(404).json({ success: false, message: "Document not found" });
     }
   } catch (err) {
     console.error("Delete failed:", err);
