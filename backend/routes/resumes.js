@@ -87,20 +87,27 @@ router.delete("/:id", auth, async (req, res) => {
 
     if (resume) {
       const resumeSizeMB = resume.sizeMB || 0;
-
       const user = await User.findById(req.user.id);
 
-      user.totalSizeMB = Math.max(0, (user.totalSizeMB || 0) - resumeSizeMB);
+      if (user) {
+        const currentSize = user.totalSizeMB || 0;
 
-      await user.save();
+        const newSize = Math.max(0, +(currentSize - resumeSizeMB).toFixed(2));
+        user.totalSizeMB = newSize;
+
+        await user.save();
+      }
+
+      return res.json({ success: true, message: "Resume deleted" });
+    } else {
+      return res.status(404).json({ success: false, message: "Resume not found" });
     }
-
-    res.json({ success: true });
   } catch (err) {
     console.error("Delete failed:", err);
     res.status(500).json({ success: false, message: "Delete failed" });
   }
 });
+
 
 
 export default router;
