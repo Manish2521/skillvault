@@ -86,7 +86,7 @@ export default function Resumes() {
       <LoadingBar color="#3b82f6" ref={bar} shadow />
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Your Resumes</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Your Documents</h2>
           <Link
             to="/add"
             className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md text-sm sm:text-base"
@@ -123,7 +123,7 @@ export default function Resumes() {
         {loading ? (
           <p className="text-gray-600">Loading resumes...</p>
         ) : resumes.length === 0 ? (
-          <p className="text-gray-500 text-lg">No resumes found.</p>
+          <p className="text-gray-500 text-lg">No Documents found.</p>
         ) : (
           <div className="overflow-x-auto rounded-lg shadow border border-gray-200">
             <table className="min-w-full divide-y divide-gray-200">
