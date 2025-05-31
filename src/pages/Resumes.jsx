@@ -100,6 +100,7 @@ export default function Resumes() {
               <thead className="bg-gray-50 text-sm text-gray-700 font-semibold">
                 <tr>
                   <th className="px-4 sm:px-6 py-3 text-left">Name</th>
+                  <th className="px-4 sm:px-6 py-3 text-right">Size (MB)</th>
                   <th className="px-4 sm:px-6 py-3 text-right">Actions</th>
                 </tr>
               </thead>
@@ -116,6 +117,10 @@ export default function Resumes() {
                       </span>
                     </td>
 
+                    <td className="px-4 sm:px-6 py-3 text-right text-gray-600">
+                      {resume.sizeMB ? `${resume.sizeMB} MB` : '—'}
+                    </td>
+                    
                     <td className="px-4 sm:px-6 py-3 text-right">
                       <div className="inline-flex flex-wrap justify-end gap-2">
                         {/* Download Button */}
