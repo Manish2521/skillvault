@@ -121,7 +121,7 @@ export default function Resumes() {
 
         
         {loading ? (
-          <p className="text-gray-600">Loading resumes...</p>
+          <p className="text-gray-600">Loading documents...</p>
         ) : resumes.length === 0 ? (
           <p className="text-gray-500 text-lg">No Documents found.</p>
         ) : (
