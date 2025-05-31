@@ -51,6 +51,11 @@ export default function Resumes() {
     setShowDeleteModal(false);
   };
 
+  const quotaLimit = 10; 
+  const totalSize = resumes.reduce((sum, r) => sum + (r.sizeMB || 0), 0);
+  const percent = Math.min((totalSize / quotaLimit) * 100, 100);
+  const quotaBar = percent >= 75 ? "bg-red-500" : "bg-blue-600";  
+
   const handleDelete = async () => {
     if (!selectedResumeId) return;
 
@@ -90,6 +95,31 @@ export default function Resumes() {
           </Link>
         </div>
 
+
+        <div className="w-full bg-gray-200 h-4 rounded-full overflow-hidden mb-1 relative">
+          {/* Filled progress */}
+          <div
+            className={`h-full ${quotaBar}`}
+            style={{ width: `${percent}%`, transition: 'width 0.4s ease-in-out' }}
+          ></div>
+
+
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span
+              className={`text-[11px] font-semibold ${
+                percent > 15 ? "text-black" : "text-gray-800"
+              }`}
+            >
+              {percent.toFixed(0)}%
+            </span>
+          </div>
+        </div>
+
+        <p className="text-xs text-gray-600 mb-6">
+          {totalSize.toFixed(2)} MB / 10 MB used
+        </p>
+
+        
         {loading ? (
           <p className="text-gray-600">Loading resumes...</p>
         ) : resumes.length === 0 ? (
