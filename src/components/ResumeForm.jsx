@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
+// const currentTotal = resumes.reduce((s, r) => s + (r.sizeMB || 0), 0);
+// const fileSizeMB   = +(file.size / (1024 * 1024)).toFixed(2);
+
 export default function ResumeForm() {
   const [file, setFile] = useState(null);
   const [resumeName, setResumeName] = useState("");
@@ -44,13 +47,21 @@ export default function ResumeForm() {
     if (!file) return toast.error("Please select a file.");
     if (!resumeName.trim()) return toast.error("Please enter a resume name.");
 
+    const currentTotal = resumes.reduce((s, r) => s + (r.sizeMB || 0), 0);
+    const fileSizeMB   = +(file.size / (1024 * 1024)).toFixed(2);
+
+    if (!file) return toast.error("Please select a file.");
+    if (currentTotal + fileSizeMB > 10) {
+      return toast.error("Quota exceeded (10 MB total). Delete something first.");
+    }    
+
     const formData = new FormData();
     formData.append("resume", file);
     formData.append("resumeName", resumeName.trim());
 
     try {
       setUploading(true);
-      bar.current.continuousStart();
+      if (bar.current) bar.current.continuousStart();
       const token = localStorage.getItem("token");
 
       const res = await fetch(`${backendUrl}/api/resumes/upload`, {
@@ -72,7 +83,7 @@ export default function ResumeForm() {
     } catch {
       toast.error("Network error.");
     } finally {
-      bar.current.complete();
+      if (bar.current) bar.current.complete();
       setUploading(false);
     }
   };
@@ -131,8 +142,8 @@ export default function ResumeForm() {
                   toast.error("Please select a PDF file.");
                   e.target.value = null;
                   setFile(null);
-                } else if (selectedFile.size > 10 * 1024 * 1024) {
-                  toast.error("PDF must be under 10MB.");
+                } else if (selectedFile.size > 4 * 1024 * 1024) {
+                  toast.error("PDF must be under 4MB.");
                   e.target.value = null;
                   setFile(null);
                 } else {
