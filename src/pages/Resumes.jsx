@@ -68,13 +68,13 @@ export default function Resumes() {
 
       const data = await res.json();
       if (res.ok && data.success) {
-        toast.success("Resume deleted");
+        toast.success("Document deleted");
         setResumes((prev) => prev.filter((r) => r._id !== selectedResumeId));
       } else {
         toast.error(data.message || "Failed to delete");
       }
     } catch (err) {
-      toast.error("Error deleting resume");
+      toast.error("Error deleting document");
     } finally {
       setShowDeleteModal(false);
       setSelectedResumeId(null);
@@ -200,7 +200,7 @@ export default function Resumes() {
               Confirm Delete
             </h3>
             <p className="text-gray-700 mb-6">
-              Are you sure you want to delete this resume? This action cannot be undone.
+              Are you sure you want to delete this document? This action cannot be undone.
             </p>
             <div className="flex justify-end gap-4">
               <button
