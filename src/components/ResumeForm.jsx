@@ -30,9 +30,9 @@ export default function ResumeForm() {
       });
       const data = await res.json();
       if (res.ok) setResumes(data);
-      else toast.error(data.message || "Failed to load resumes.");
+      else toast.error(data.message || "Failed to load documents.");
     } catch {
-      toast.error("Failed to fetch resumes.");
+      toast.error("Failed to fetch documents.");
     } finally {
       setLoading(false);
     }
@@ -112,7 +112,7 @@ export default function ResumeForm() {
     <div className="bg-gray-100 px-4 py-6 min-h-screen">
       <LoadingBar color="#3b82f6" ref={bar} shadow />
       <div className="bg-white p-8 rounded-xl shadow-lg max-w-md mx-auto mb-8">
-        <h2 className="text-2xl font-semibold mb-6">Upload Your Resume</h2>
+        <h2 className="text-2xl font-semibold mb-6">Upload Your Documents</h2>
 
         <form onSubmit={handleUpload} className="space-y-4">
         <input
@@ -164,13 +164,13 @@ export default function ResumeForm() {
               uploading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
             }`}
           >
-            {uploading ? "Uploading…" : "Upload Resume"}
+            {uploading ? "Uploading…" : "Upload Documents"}
           </button>
         </form>
       </div>
 
       {/* <div className="max-w-3xl mx-auto">
-        <h3 className="text-xl font-bold mb-4">Your Resumes</h3>
+        <h3 className="text-xl font-bold mb-4">Your Documents</h3>
         <ResumeList resumes={resumes} onDelete={handleDelete} loading={loading} />
       </div> */}
 
