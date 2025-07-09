@@ -38,7 +38,7 @@ router.post(
       const user = await User.findById(req.user.id);
       if (!user) return res.status(404).json({ success: false, message: "User not found" });
   
-      const quotaLimit = 10;         // 10 MB total
+      const quotaLimit = 20;         // 20 MB total
       if (user.totalSizeMB + sizeMB > quotaLimit) {
         return res.status(413).json({ success: false, message: "Quota exceeded (10 MB)" });
       }
