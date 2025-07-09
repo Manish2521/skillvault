@@ -30,13 +30,13 @@ export default function Home() {
 
 
       <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 max-w-2xl mb-4 leading-tight">
-        Securely Store &amp; Manage Your <span className="text-blue-600">Resumes</span> in One Place
+        Securely Store &amp; Manage Your <span className="text-blue-600">Document</span> in One Place
 
       </h1>
 
 
       <p className="text-gray-600 max-w-xl mb-8 text-lg md:text-xl">
-        SkillVault lets you securely upload, organize, and access your resumes anytime, anywhere. Join now and take control of your career documents.
+        SkillVault lets you securely upload, organize, and access your Document anytime, anywhere. Join now and take control of your career documents.
       </p>
 
 
