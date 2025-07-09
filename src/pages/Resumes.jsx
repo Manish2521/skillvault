@@ -58,7 +58,7 @@ export default function Resumes() {
     setShowDeleteModal(false);
   };
 
-  const quotaLimit = 10; 
+  const quotaLimit = 20; 
   const totalSize = resumes.reduce((sum, r) => sum + (r.sizeMB || 0), 0);
   const percent = Math.min((totalSize / quotaLimit) * 100, 100);
   const quotaBar = percent >= 75 ? "bg-red-500" : "bg-blue-600";  
@@ -128,7 +128,7 @@ export default function Resumes() {
         </div>
 
         <p className="text-xs text-gray-600 mb-6">
-          {totalSize.toFixed(2)} MB / 10 MB used
+          {totalSize.toFixed(2)} MB / 20 MB used
         </p>
 
         
