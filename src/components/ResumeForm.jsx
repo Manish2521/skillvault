@@ -51,8 +51,8 @@ export default function ResumeForm() {
     const fileSizeMB   = +(file.size / (1024 * 1024)).toFixed(2);
 
     if (!file) return toast.error("Please select a file.");
-    if (currentTotal + fileSizeMB > 10) {
-      return toast.error("Quota exceeded (10 MB total). Delete something first.");
+    if (currentTotal + fileSizeMB > 20) {
+      return toast.error("Quota exceeded (20 MB total). Delete something first.");
     }    
 
     const formData = new FormData();
