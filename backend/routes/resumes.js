@@ -40,7 +40,7 @@ router.post(
   
       const quotaLimit = 20;         // 20 MB total
       if (user.totalSizeMB + sizeMB > quotaLimit) {
-        return res.status(413).json({ success: false, message: "Quota exceeded (10 MB)" });
+        return res.status(413).json({ success: false, message: "Quota exceeded (20 MB)" });
       }
 
       
