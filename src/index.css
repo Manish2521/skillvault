@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body, html, #root {
+  height: 100%;
+  overflow: hidden;
+} */
+
+@media (max-width: 640px) {
+  .Toastify__toast-container--top-right {
+    top: 4.5rem !important; 
+    right: 0.75rem !important;
+  }  
+  .Toastify__toast {
+    font-size: 0.75rem !important;    
+    padding: 11px 12px !important;      
+    min-height: auto !important;
+    max-width: 80vw !important;       
+    margin: 0 0 1rem auto !important;
+  }
+
+  .Toastify__toast-body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .Toastify__close-button {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+}

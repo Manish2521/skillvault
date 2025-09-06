@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1534.0",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^1.37.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "express-session": "^1.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.3",
+    "multer": "^2.0.0",
+    "multer-storage-cloudinary": "^4.0.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo \"No build step needed for backend\""
+  },
+  "type": "module",
+  "main": "server.js",
+  "version": "1.0.0",
+  "name": "resume-manager-backend"
+}
