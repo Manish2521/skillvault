@@ -26,7 +26,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://skillvault.netlify.app/api/auth/google/callback",
+      // callbackURL: "https://skillvault.netlify.app/api/auth/google/callback",
+      callbackURL: `${process.env.VITE_BACKEND_URL}/api/auth/google/callback`,
       passReqToCallback: true, 
     },
     async (req, accessToken, refreshToken, profile, done) => {
